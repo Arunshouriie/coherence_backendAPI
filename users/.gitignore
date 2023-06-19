@@ -1,0 +1,8 @@
+# All python libraries
+/coherence_backend_API/app
+/coherence_backendAPI/__pycache__
+/coherence_backendAPI/coherence_backendAPI/__pycache__
+/coherence_backendAPI/users/__pycache__
+
+# local migrations
+/coherence_backendAPI/users/migrations
