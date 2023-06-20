@@ -5,12 +5,14 @@ from tabnanny import verbose
 from unittest.util import _MAX_LENGTH
 import uuid
 from django.db import models
+from phonenumber_field.modelfields import PhoneNumberField
 
 # Create your models here.
 from django.dispatch import receiver
 from django.urls import reverse
 from django_rest_passwordreset.signals import reset_password_token_created
 from django.core.mail import send_mail 
+
 
 GENDER_CHOICES = (
         ('M', 'Male'),
@@ -30,7 +32,7 @@ class User(models.Model):
         return self.user_name
 
 class user_info(models.Model):
-    # id = models.AutoField(primary_key = True)
+    patient_id = models.ForeignKey('User',blank=True, null=True, on_delete=models.CASCADE)
     # uuid = models.ForeignKey('User', on_delete=models.CASCADE)
     name = models.CharField(max_length=50, blank=True, null=True)
     dob = models.DateField(max_length=8, blank=True, null=True)
@@ -40,20 +42,31 @@ class user_info(models.Model):
     weight = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
     address = models.CharField(max_length=250, blank=True, null=True)
+    contact_no = PhoneNumberField(blank=True, help_text='Contact phone number')
+    email = models.CharField(max_length=50, blank=True, null=True)
+    nominee_name = models.CharField(max_length=50, blank=True, null=True)
+    nominee_mobile = PhoneNumberField(blank=True, help_text='nominee phone number')
     postal_code = models.IntegerField(blank=True, null=True)
     state = models.CharField(max_length=50, blank=True, null=True, default= "")
     country = models.CharField(max_length=50, blank=True, null=True, default= "")
     current_doctor = models.CharField(max_length=50, blank=True, null=True, default= "")
+    doctors_pic = models.ImageField(upload_to = 'images/', blank=True, default= "")
     diagnosis = models.CharField(max_length=250, blank=True, null=True, default= "")
+    allergies = models.CharField(max_length=50, blank=True, null=True, default= "")
+    medication_name = models.CharField(max_length=50, blank=True, null=True, default= "")
+    medicine_pic = models.ImageField(upload_to = 'images/', default= "", blank=True)
+    dosage_time1 = models.DateTimeField(default=datetime.now, blank=True)
+    dosage_time2 = models.DateTimeField(default=datetime.now, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     updated_at = models.DateTimeField(auto_now=True, blank=True, null=True)
     device_id = models.AutoField(primary_key=True, blank=True)
+
     class Meta:
         verbose_name = "User_profile"
         verbose_name_plural = "User_profiles"
     
     def __unicode__(self):
-        return self.first_name
+        return self.name
 
 
 class provisioning(models.Model):
@@ -78,7 +91,7 @@ class reminder_schedule_groups(models.Model):
         verbose_name_plural = "Reminders"
     
     def __unicode__(self):
-        return self.medicine_name
+        return self.duration_in_mins
 
 class dispense(models.Model):
     # # uuid = models.ForeignKey('User', on_delete=models.CASCADE)
@@ -86,9 +99,9 @@ class dispense(models.Model):
     # time_stamp = models.DateTimeField(auto_now_add=True)
     id = models.AutoField(primary_key=True)
     schedule_id = models.IntegerField(default=-1)
-    dispense_time = models.DateTimeField(default=-1)
-    alarms_start_time = models.DateTimeField(default="")
-    alarms_end_time = models.DateTimeField(default="")
+    dispense_time = models.DateTimeField(default=datetime.now)
+    alarms_start_time = models.DateTimeField(default=datetime.now)
+    alarms_end_time = models.DateTimeField(default=datetime.now)
     created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     updated_at = models.DateTimeField(auto_now=True, blank=True, null=True)
 
@@ -100,7 +113,7 @@ class reminder_schedule_audit(models.Model):
     id = models.AutoField(primary_key=True)
     dispense_id = models.IntegerField(default=-1)
     dispense_consumed = models.BooleanField(default=False)
-    date_of_alarms = models.DateTimeField(default="")
+    date_of_alarms = models.DateTimeField(default=datetime.now)
     alarm_count = models.IntegerField(default=-1)
 
     class Meta:
