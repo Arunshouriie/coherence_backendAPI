@@ -137,6 +137,8 @@ class medicine_dispense_information(models.Model):
     dispense_id = models.AutoField(primary_key=True)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     dispense = models.BooleanField()
+    video_review = models.BooleanField(default=False)
+    points = models.IntegerField(default=-1)
     created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     updated_at = models.DateTimeField(auto_now=True, blank=True, null=True)
     class Meta:
