@@ -56,6 +56,7 @@ class user_info(models.Model):
     medicine_name = models.CharField(max_length=50, blank=True, null=True, default= "")
     medicine_pic = models.ImageField(upload_to = 'images/', default= "", blank=True)
     dose_duration = models.IntegerField(default=-1)
+    dose_per_day = models.IntegerField(default=-1)
     dosage_time1 = models.DateTimeField(default=datetime.now, blank=True)
     dosage_time2 = models.DateTimeField(default=datetime.now, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
