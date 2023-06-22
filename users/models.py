@@ -88,6 +88,7 @@ class reminder_schedule_groups(models.Model):
     No_of_alarms_before_dispense = models.IntegerField(default=-1)
     No_of_alarms_after_dispense = models.IntegerField(default=-1)
     time_range_between_alarms = models.CharField(max_length=50)
+    text = models.BooleanField(default=False)
     class Meta:
         verbose_name = "Reminder_schedule"
         verbose_name_plural = "Reminders"
