@@ -45,7 +45,7 @@ class LoginAPI(KnoxLoginView):
 
 # Get User API
 class UserAPI(generics.RetrieveAPIView):
-    permission_classes = [permissions.IsAuthenticated,]
+    permission_classes = [permissions.AllowAny,]
     serializer_class = UserSerializer
 
     def get_object(self):

@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'drf_yasg',
     'whitenoise.runserver_nostatic',
     'phonenumber_field',
+    'reports',
 ]
 
 MIDDLEWARE = [
