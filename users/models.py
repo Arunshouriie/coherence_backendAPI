@@ -149,6 +149,43 @@ class medicine_dispense_information(models.Model):
         verbose_name = "medicine_dispense"
         verbose_name_plural = "medicines"
 
+class Capture_event(models.Model):
+    device_id = models.ForeignKey('User', on_delete=models.CASCADE)
+    menu_btn = models.DateTimeField(default=datetime.now)
+    notification_btn = models.DateTimeField(default=datetime.now)
+    home_btn = models.DateTimeField(default=datetime.now)
+    dispense_btn = models.DateTimeField(default=datetime.now)
+    reminder_btn = models.DateTimeField(default=datetime.now)
+    travel_btn = models.DateTimeField(default=datetime.now)
+    contact_btn = models.DateTimeField(default=datetime.now)
+    sideeffect_btn = models.DateTimeField(default=datetime.now)
+    setting_btn = models.DateTimeField(default=datetime.now)
+    coaching_btn = models.DateTimeField(default=datetime.now)
+    dose_schedule_btn = models.DateTimeField(default=datetime.now)
+    reminder_group_btn = models.DateTimeField(default=datetime.now)
+    med_review_btn = models.DateTimeField(default=datetime.now)
+    profile_btn = models.DateTimeField(default=datetime.now)
+    edit_profile_btn = models.DateTimeField(default=datetime.now)
+    default_option_btn = models.DateTimeField(default=datetime.now)
+    my_reminder_btn = models.DateTimeField(default=datetime.now)
+    performance_btn = models.DateTimeField(default=datetime.now)
+    learning_btn = models.DateTimeField(default=datetime.now)
+    community_btn = models.DateTimeField(default=datetime.now)
+    events_btn = models.DateTimeField(default=datetime.now)
+    help_btn = models.DateTimeField(default=datetime.now)
+    msg_template_btn = models.DateTimeField(default=datetime.now)
+    msg_family_btn = models.DateTimeField(default=datetime.now)
+    msg_clinical_btn = models.DateTimeField(default=datetime.now)
+    msg_coherence_btn = models.DateTimeField(default=datetime.now)
+    stop_recording_btn = models.DateTimeField(default=datetime.now)
+    load_medication_btn = models.DateTimeField(default=datetime.now)
+    more_menu_btn = models.DateTimeField(default=datetime.now)
+
+    class Meta:
+        verbose_name = "Capture_event"
+        verbose_name_plural = "Capture_events"
+
+
 
 
 

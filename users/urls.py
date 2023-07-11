@@ -1,5 +1,5 @@
 from knox import views as knox_views
-from .views import RegisterAPI, UserAPI, UserinfoView, LoginAPI, ChangePasswordView,MedicinedispenseView, provisionView, medicinescheduleView, DispenseView, ScheduleAuditView, AlarmAuditView
+from .views import RegisterAPI, UserAPI, UserinfoView, LoginAPI, ChangePasswordView,MedicinedispenseView, provisionView, medicinescheduleView, DispenseView, ScheduleAuditView, AlarmAuditView, CaptureEventView
 from django.urls import path, include, re_path
 from rest_framework import routers, permissions
 from drf_yasg import openapi
@@ -14,6 +14,7 @@ router.register(r"rem/schedules/audit", ScheduleAuditView)
 router.register(r"alarm/audit", AlarmAuditView)
 router.register(r"device_provision", provisionView)
 router.register(r"medicine/dispense/info", MedicinedispenseView)
+router.register(r"btn/event/info", CaptureEventView)
 
 
 urlpatterns = [

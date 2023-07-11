@@ -2,7 +2,7 @@ from rest_framework import generics, permissions
 from rest_framework import serializers
 from django.contrib.auth.models import User
 
-from .models import  reminder_schedule_groups, dispense, reminder_schedule_audit, alarm_audit, provisioning, medicine_dispense_information, user_info
+from .models import  reminder_schedule_groups, dispense, reminder_schedule_audit, alarm_audit, provisioning, medicine_dispense_information, user_info, Capture_event
 
 # User Serializer
 # class UserSerializer(serializers.ModelSerializer):
@@ -79,6 +79,11 @@ class alarm_audit_serializer(serializers.ModelSerializer):
 class medicine_dispense_serializer(serializers.ModelSerializer):
     class Meta:
         model = medicine_dispense_information
+        fields = '__all__'
+
+class Capture_event_serializer(serializers.ModelSerializer):
+    class Meta:
+        model = Capture_event
         fields = '__all__'
 
 class user_info_serializer(serializers.ModelSerializer):
