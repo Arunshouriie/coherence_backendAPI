@@ -8,11 +8,11 @@ from rest_framework import status, viewsets
 from rest_framework import generics, permissions
 from rest_framework.response import Response
 # from .models import AuthToken
-from .serializers import UserSerializer,provisionserializer,user_info_serializer, RegisterSerializer, ChangePasswordSerializer, medicine_schedule_serializer, dispense_serializer, schedule_audit_serializer, alarm_audit_serializer, medicine_dispense_serializer, Capture_event_serializer
+from .serializers import UserSerializer,provisionserializer,user_info_serializer, RegisterSerializer, ChangePasswordSerializer, medicine_schedule_serializer, dispense_serializer, schedule_audit_serializer, alarm_audit_serializer, medicine_dispense_serializer, Capture_event_serializer, Tracker_data_serializer
 from django.views.decorators.debug import sensitive_post_parameters
 from rest_framework.views import APIView
 from rest_framework import generics, permissions
-from .models import  reminder_schedule_groups,user_info, dispense, reminder_schedule_audit, alarm_audit, provisioning, medicine_dispense_information, Capture_event
+from .models import  reminder_schedule_groups,user_info, dispense, reminder_schedule_audit, alarm_audit, provisioning, medicine_dispense_information, Capture_event, Tracker_data
 
 # Change Password
 from rest_framework import status
@@ -101,6 +101,11 @@ class CaptureEventView(viewsets.ModelViewSet):
     permission_classes = [permissions.AllowAny]
     queryset = Capture_event.objects.all()
     serializer_class = Capture_event_serializer
+
+class TrackerdataView(viewsets.ModelViewSet):
+    permission_classes = [permissions.AllowAny]
+    queryset = Tracker_data.objects.all()
+    serializer_class = Tracker_data_serializer
 
 
 class ChangePasswordView(generics.UpdateAPIView):

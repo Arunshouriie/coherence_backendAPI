@@ -185,6 +185,36 @@ class Capture_event(models.Model):
         verbose_name = "Capture_event"
         verbose_name_plural = "Capture_events"
 
+class Tracker_data(models.Model):
+    Broacasting_type = models.CharField(max_length=25, blank=True, null=True)
+    Header_ID = models.CharField(max_length=25, blank=True, null=True)
+    Blood_oxygen = models.CharField(max_length=25, blank=True, null=True)
+    Stress_level = models.CharField(max_length=25, blank=True, null=True)
+    RRI_HRV = models.CharField(max_length=25, blank=True, null=True)
+    Activity_Intensity = models.CharField(max_length=25, blank=True, null=True)
+    Blood_pressure_SBP = models.CharField(max_length=25, blank=True, null=True)
+    Blood_pressure_DBP = models.CharField(max_length=25, blank=True, null=True)
+    calorie = models.CharField(max_length=25, blank=True, null=True)
+    surface_temperature = models.CharField(max_length=25, blank=True, null=True)
+    body_temperature = models.CharField(max_length=25, blank=True, null=True)
+    heart_rate = models.CharField(max_length=25, blank=True, null=True)
+    sos = models.CharField(max_length=25, blank=True, null=True)
+    battery = models.CharField(max_length=25, blank=True, null=True)
+    beacon_battery = models.CharField(max_length=25, blank=True, null=True)
+    Device_name = models.CharField(max_length=25, blank=True, null=True)
+    Total = models.CharField(max_length=25, blank=True, null=True)
+
+
+class Meta:
+        verbose_name = "Tracker_data"
+        verbose_name_plural = "Trackers_data"
+
+
+
+
+
+
+
 
 
 
